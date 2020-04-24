@@ -376,6 +376,126 @@ table th {
   margin-right: 0.6rem;
 }
 
+/* Navbar Logo Style */
+.title h1 {
+  display: inline-block;
+}
+.logo {
+  font-size: 16px;
+  display: inline-block;
+  position: relative;
+  margin-right: 10px;
+  top: 100%;
+  transform: translateY(-10%);
+}
+.red-o {
+  color: rgba(255, 100, 100, 0.95);
+  font-size: 18px;
+  line-height: 0;
+}
+.logo h4 {
+  position: relative;
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.8);
+}
+.figure-container {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  fill: transparent;
+  stroke: rgba(255, 100, 100, 0.75);
+  stroke-width: 4px;
+  stroke-linecap: round;
+  z-index: -1;
+}
+
+/* Card Style */
+.card-cov {
+  padding: 0;
+  width: 500px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.value-top {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+}
+.current-value {
+  width: 200px;
+}
+.current-value:last-of-type {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-cov ul li {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+  text-align: center;
+  width: 400px;
+  max-width: 100%;
+  margin: 0 auto;
+  border: #ccc 1px dotted;
+}
+
+.card-cov ul li span {
+  border-left: #ccc 1px dotted;
+  border-right: #ccc 1px dotted;
+  font-weight: bold;
+}
+
+.card-cov ul li span:first-of-type {
+  border-left: none;
+  color: rgb(132, 132, 132);
+  font-weight: normal;
+}
+
+.card-cov ul li span:last-of-type {
+  border-right: none;
+  font-weight: normal;
+}
+
+.card-cov ul li.head-table span {
+  font-weight: normal;
+  color: #000;
+}
+
+.proportion {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  text-align: center;
+}
+.proportion .value {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin: 25px 10px;
+  border: #ccc 1px dotted;
+  border-radius: 10px;
+  background: var(--light-color);
+}
+.value-number {
+  font-weight: bold;
+}
+.proportion .value:last-of-type .value-number {
+  color: var(--danger-color);
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 700px;
+  margin: auto;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .hide-sm {

@@ -22,7 +22,7 @@ const Search = () => {
   };
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='search-form'>
         <input
           type='text'
           name='text'
@@ -30,11 +30,7 @@ const Search = () => {
           placeholder='Enter country...'
           onChange={onChange}
         />
-        <input
-          type='submit'
-          value='Search'
-          className='btn btn-dark btn-block'
-        ></input>
+        <input type='submit' value='Search' className='btn btn-dark'></input>
       </form>
     </div>
   );
