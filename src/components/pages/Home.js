@@ -1,14 +1,16 @@
 import React, { Fragment } from 'react';
 import Search from '../layout/Search';
-import Card from '../layout/Card';
+import Countries from '../countries/Countries';
+// import Spinner from '../layout/Spinner';
 
-function Home() {
+const Home = () => {
   return (
     <Fragment>
       <Search />
-      <Card />
+      <Countries />
+      {/* <Spinner /> */}
     </Fragment>
   );
-}
+};
 
 export default Home;

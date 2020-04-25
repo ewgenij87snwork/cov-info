@@ -309,7 +309,7 @@ img {
 
 /* Forms */
 input {
-  margin: 1.2rem 0;
+  margin: 0;
 }
 
 .form-text {
@@ -410,12 +410,52 @@ table th {
   z-index: -1;
 }
 
+/* Search-form & Autocomplete */
+.search-form {
+  display: flex;
+
+  width: 700px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+.autocomplete {
+  position: relative;
+  display: inline-block;
+  width: 700px;
+  max-width: 100%;
+}
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.autocomplete-items div {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  background-color: #e9e9e9;
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+
 /* Card Style */
 .card-cov {
   padding: 0;
   width: 500px;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 2rem auto;
 }
 .value-top {
   display: flex;
@@ -476,7 +516,7 @@ table th {
   justify-content: center;
   align-items: center;
   padding: 5px;
-  margin: 25px 10px;
+  margin: 10px 10px;
   border: #ccc 1px dotted;
   border-radius: 10px;
   background: var(--light-color);
@@ -486,14 +526,6 @@ table th {
 }
 .proportion .value:last-of-type .value-number {
   color: var(--danger-color);
-}
-
-.search-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 700px;
-  margin: auto;
 }
 
 /* Mobile Styles */

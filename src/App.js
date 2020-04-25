@@ -12,24 +12,27 @@ import NotFound from './components/pages/NotFound';
 import Alert from './components/layout/Alert';
 import AlertState from './components/context/alert/AlertState';
 import './App.css';
+import CovState from './components/context/cov/CovState';
 
 const App = () => {
   return (
-    <AlertState>
-      <Router>
-        <div className='App'>
-          <Navbar />
-          <div className='container'>
-            <Alert />
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/about' component={About} />
-              <Route component={NotFound} />
-            </Switch>
+    <CovState>
+      <AlertState>
+        <Router>
+          <div className='App'>
+            <Navbar />
+            <div className='container'>
+              <Alert />
+              <Switch>
+                <Route exact path='/' component={Home} />
+                <Route exact path='/about' component={About} />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
           </div>
-        </div>
-      </Router>
-    </AlertState>
+        </Router>
+      </AlertState>
+    </CovState>
   );
 };
 

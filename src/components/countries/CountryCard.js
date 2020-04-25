@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+// import CovContext from '../context/cov/covContext';
 
-const Card = () => {
+const Card = ({ country }) => {
+  // const covContext = useContext(CovContext);
+  // const { countries } = covContext;
   return (
-    <div className='card card-cov my-3'>
-      <h2 className='bg-light text-center'>Poland</h2>
+    <div className='card card-cov my-2'>
+      <h2 className='bg-light text-center'>{country}</h2>
       <div className='value-top  m-1 '>
         <div className='current-value lead badge badge-primary '>
           Current numbers: <br />
