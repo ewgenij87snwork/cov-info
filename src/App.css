@@ -413,7 +413,8 @@ table th {
 /* Search-form & Autocomplete */
 .search-form {
   display: flex;
-
+  justify-content: center;
+  align-items: center;
   width: 700px;
   max-width: 100%;
   margin: 0 auto;

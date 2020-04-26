@@ -5,8 +5,8 @@ import CovContext from '../context/cov/covContext';
 const Search = () => {
   const alertContext = useContext(AlertContext);
   const covContext = useContext(CovContext);
-  const [text, setText] = useState('');
-  const { getCountry, getCountries, autocompleteArr } = covContext;
+  // const [text, setText] = useState('');
+  const { getCountry, getCountries, autocompleteArr, textInput } = covContext;
 
   useEffect(() => {
     getCountries();
@@ -14,22 +14,23 @@ const Search = () => {
   }, []);
 
   const onChange = (e) => {
-    setText(e.target.value);
     covContext.autocomplete(e.target.value);
   };
+  // setText(textInput);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (text === '') {
+    if (textInput === '') {
       alertContext.setAlert({
         alert: { msg: 'Please, enter text', type: 'light' },
       });
     } else {
       alertContext.removeAlert();
-      covContext.getCountry(text);
-      setText('');
+      getCountry(textInput);
+      // setText('');
     }
   };
+
   return (
     <div className='search-container'>
       <form onSubmit={onSubmit} className='search-form' autoComplete='off'>
@@ -37,7 +38,7 @@ const Search = () => {
           <input
             type='text'
             name='text'
-            value={text}
+            value={textInput}
             placeholder='Enter country...'
             onChange={onChange}
           />

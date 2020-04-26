@@ -6,22 +6,27 @@ import CovContext from '../context/cov/covContext';
 const Countries = () => {
   const covContext = useContext(CovContext);
 
-  const { loading, countries } = covContext;
+  const { loading, countriesStart, countrySelected } = covContext;
 
   // Spinner while loading countries
   if (loading) {
     return <Spinner />;
   } else {
-    return (
-      <div>
-        <h1>Yessssssssssss</h1>
-        {/* {countries.map((country) => {
-          return (
-            <CountryCard key={countries.indexOf(country)} country={country} />
-          );
-        })} */}
-      </div>
-    );
+    return <h1>.........</h1>;
+
+    // if (countrySelected.length === 0) {
+    //   return countriesStart.map((country) => {
+    //     return (
+    //       <CountryCard
+    //         key={countriesStart.indexOf(country)}
+    //         country={country}
+    //       />
+    //     );
+    //   });
+    // } else
+    // {
+    //   return <CountryCard country={countrySelected} />;
+    // }
   }
 };
 

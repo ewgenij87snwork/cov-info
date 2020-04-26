@@ -1,5 +1,10 @@
 import React, { useReducer } from 'react';
-import { GET_COUNTRIES, SET_LOADING, AUTOCOMPLETE } from '../types';
+import {
+  GET_COUNTRIES,
+  SET_LOADING,
+  AUTOCOMPLETE,
+  GET_COUNTRY,
+} from '../types';
 import CovContext from './covContext';
 import CovReducer from './covReducer';
 import Axios from 'axios';
@@ -7,17 +12,14 @@ import Axios from 'axios';
 const CovState = (props) => {
   const initialState = {
     countries: [],
+    firstLettersArr: [],
     autocompleteArr: [],
     loading: false,
+    countryData: [],
+    textInput: '',
   };
 
   const [state, dispatch] = useReducer(CovReducer, initialState);
-
-  // Hello! Can You help me with find instructions to use arcgis?
-  // I saw your project in group Facebook ("First work in FrontEnd") it is very good! And a lot of code!
-  // I also want make something from Udemy course for statistics about Covid. This is will be simplest -- just consolidate my knowledge and go study other lessons... Not yet study Postman...
-
-  // Now I understand what will make site without techology arcgis, but it ist very interesting techology and maybe leter with bette knowledge I try to do something.
 
   // Set loading
   const setLoading = () => dispatch({ type: SET_LOADING });
@@ -26,10 +28,11 @@ const CovState = (props) => {
   const getCountries = async () => {
     const res = await Axios.get(`https://api.covid19api.com/countries`);
 
-    let allarray = res.data;
-    const countries = allarray.map((item) => {
+    // Take names for all countries
+    const countries = res.data.map((item) => {
       return item.Country;
     });
+
     dispatch({
       type: GET_COUNTRIES,
       payload: countries,
@@ -38,13 +41,16 @@ const CovState = (props) => {
 
   // Autocomplete
   const autocomplete = (text) => {
-    state.autocompleteArr = state.countries.filter(
+    // Generate a new array, in which add elements in which the entered letters are equal to the first letters of elements in the array of countries.
+    state.firstLettersArr = state.countries.filter(
       (country) =>
         country.substr(0, text.length).toUpperCase() === text.toUpperCase()
     );
-    state.autocompleteArr = state.autocompleteArr.map((country) => (
+
+    // From every elements from previous array make DOM-elements
+    state.autocompleteArr = state.firstLettersArr.map((country) => (
       <div
-        key={state.autocompleteArr.indexOf(country)}
+        key={state.firstLettersArr.indexOf(country)}
         onClick={autocompleteClick}
       >
         <strong>{country.substr(0, text.length)}</strong>
@@ -54,21 +60,24 @@ const CovState = (props) => {
       </div>
     ));
 
-    // onclick + поиск страны + формирование массива из 7 данных
+    state.textInput = text;
+
     dispatch({
       type: AUTOCOMPLETE,
-      payload: state.autocompleteArr,
+      payload: {
+        autocompleteArr: state.autocompleteArr,
+        textInput: state.textInput,
+      },
     });
   };
 
-  // Take value from click on autocomlete search country
   const autocompleteClick = (e) => {
     e.preventDefault();
-    const country = e.target.lastChild.value;
-    const autocompleteBlock = e.target.parentNode;
 
+    const autocompleteBlock = e.target.parentNode;
     autocompleteBlock.innerHTML = '';
 
+    const country = e.target.lastChild.value;
     getCountry(country);
   };
 
@@ -78,14 +87,26 @@ const CovState = (props) => {
     const res = await Axios.get(
       `https://api.covid19api.com/total/country/${country}`
     );
-    console.log(res.data);
+
+    const countryData = res.data.splice(res.data.length - 7, res.data.length);
+    console.log(countryData);
+
+    dispatch({
+      type: GET_COUNTRY,
+      payload: {
+        textInput: '',
+        autocompleteArr: [],
+      },
+    });
   };
+
   return (
     <CovContext.Provider
       value={{
         countries: state.countries,
         loading: state.loading,
         autocompleteArr: state.autocompleteArr,
+        textInput: state.textInput,
         getCountries,
         autocomplete,
         getCountry,

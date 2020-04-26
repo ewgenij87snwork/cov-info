@@ -1,4 +1,9 @@
-import { SET_LOADING, GET_COUNTRIES, AUTOCOMPLETE } from '../types';
+import {
+  SET_LOADING,
+  GET_COUNTRIES,
+  AUTOCOMPLETE,
+  GET_COUNTRY,
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -7,6 +12,7 @@ export default (state, action) => {
         ...state,
         loading: true,
       };
+
     case GET_COUNTRIES:
       return {
         ...state,
@@ -16,7 +22,15 @@ export default (state, action) => {
     case AUTOCOMPLETE:
       return {
         ...state,
-        autocompleteArr: action.payload,
+        autocompleteArr: action.payload.autocompleteArr,
+        textInput: action.payload.textInput,
+      };
+    case GET_COUNTRY:
+      return {
+        ...state,
+        autocompleteArr: [],
+        loading: false,
+        textInput: '',
       };
 
     default:
