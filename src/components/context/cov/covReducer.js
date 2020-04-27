@@ -28,11 +28,13 @@ export default (state, action) => {
       return {
         ...state,
         autocompleteArr: [],
-        loading: false,
         textInput: '',
-        countryLastDay: action.payload.countryLastDay,
         countryName: action.payload.countryName,
+        countryLastDay: action.payload.countryLastDay,
         countryData: action.payload.countryData,
+        countryPopulation: action.payload.countryPopulation,
+        countryPopulationPercentage: action.payload.countryPopulationPercentage,
+        loading: false,
       };
 
     default:

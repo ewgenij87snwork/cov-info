@@ -3,7 +3,14 @@ import CovContext from '../context/cov/covContext';
 
 const Card = () => {
   const covContext = useContext(CovContext);
-  const { countryName, countryLastDay, countryData } = covContext;
+  const {
+    countryName,
+    countryPopulation,
+    countryLastDay,
+    countryData,
+    countryPopulationPercentage,
+    formatNumber,
+  } = covContext;
 
   if (countryLastDay) {
     const { Confirmed, Deaths } = countryLastDay;
@@ -11,7 +18,7 @@ const Card = () => {
     return (
       <div className='card card-cov my-2'>
         <h2 className='bg-light text-center'>{countryName}</h2>
-        <div className='value-top  m-1 '>
+        <div className='value-top  m-1'>
           <div className='current-value lead badge badge-primary '>
             Current numbers: <br />
             <span className='large'>{Confirmed}</span>
@@ -20,8 +27,8 @@ const Card = () => {
             Deaths: <br /> <span className=' large'>{Deaths}</span>
           </div>
         </div>
-        <ul>
-          <li className='head-table bg-light py-1 p '>
+        <ul className='my'>
+          <li className='head-table bg-light py'>
             <span className='date '>Date</span>
             <span className='number'>Number</span>
             <span className='diff'>Increase from previous day</span>
@@ -31,8 +38,8 @@ const Card = () => {
               i < arr.length - 1 && (
                 <li className='p' key={i}>
                   <span className='date text-light'>{item.date}</span>
-                  <span className='number'>{item.confirmed}</span>
-                  <span className='diff text-danger p-1'>
+                  <span className='number'>{formatNumber(item.confirmed)}</span>
+                  <span className='diff text-danger'>
                     {item.diff > 0 ? `+ ${item.diff}` : '-'}
                   </span>
                 </li>
@@ -42,12 +49,14 @@ const Card = () => {
         </ul>
         <div className='proportion'>
           <div className='value'>
-            Population: <br />
-            <span className='value-number'>38,7 mln</span>
+            Country Population: <br />
+            <span className='value-number'>{countryPopulation}</span>
           </div>
           <div className='value'>
-            Percent of population: <br />
-            <span className='value-number'>0,03%</span>
+            Percentage infected: <br />
+            <span className='value-number'>
+              {countryPopulationPercentage} %
+            </span>
           </div>
         </div>
       </div>

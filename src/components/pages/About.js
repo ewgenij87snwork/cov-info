@@ -8,7 +8,6 @@ function About() {
         I've made this site for consolidate knowledge gained from the course of
         the Udemy.
       </p>
-      <p>This page about... some statistics</p>
 
       <div className='my-3'>
         <h3>Contact:</h3>
