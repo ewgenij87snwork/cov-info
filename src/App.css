@@ -476,6 +476,7 @@ table th {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
+  align-items: center;
   text-align: center;
   width: 400px;
   max-width: 100%;

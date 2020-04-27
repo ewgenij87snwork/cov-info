@@ -14,8 +14,10 @@ const CovState = (props) => {
     countries: [],
     firstLettersArr: [],
     autocompleteArr: [],
-    loading: false,
+    countryName: '',
+    countryLastDay: [],
     countryData: [],
+    loading: false,
     textInput: '',
   };
 
@@ -66,17 +68,11 @@ const CovState = (props) => {
       type: AUTOCOMPLETE,
       payload: {
         autocompleteArr: state.autocompleteArr,
-        textInput: state.textInput,
       },
     });
   };
-
   const autocompleteClick = (e) => {
     e.preventDefault();
-
-    const autocompleteBlock = e.target.parentNode;
-    autocompleteBlock.innerHTML = '';
-
     const country = e.target.lastChild.value;
     getCountry(country);
   };
@@ -84,18 +80,57 @@ const CovState = (props) => {
   // Search Country
   const getCountry = async (country) => {
     setLoading();
+    // Today data
     const res = await Axios.get(
+      `https://api.covid19api.com/dayone/country/${country}`
+    );
+
+    state.countryName = country;
+    state.countryLastDay = res.data[res.data.length - 1];
+
+    const resWeek = await Axios.get(
       `https://api.covid19api.com/total/country/${country}`
     );
 
-    const countryData = res.data.splice(res.data.length - 7, res.data.length);
-    console.log(countryData);
+    // Last week data
+    state.countryData = resWeek.data
+      .splice(resWeek.data.length - 7, res.data.length)
+      .reverse();
+
+    // Begin_____Must be simplest way to do this
+    const countryDistructData = state.countryData.map((item, i, arr) => {
+      return {
+        confirmed: item.Confirmed,
+        date: item.Date,
+        diff: 0,
+      };
+    });
+
+    const differencArr = countryDistructData.map((item, i, arr) => {
+      if (i > 0) {
+        return arr[i - 1].confirmed - item.confirmed;
+      } else {
+        return 0;
+      }
+    });
+
+    differencArr.shift();
+    state.countryData = countryDistructData.map((item, i) => {
+      return {
+        confirmed: item.confirmed,
+        date: item.date.slice(0, 10).split('-').reverse().join('/'),
+        diff: differencArr[i],
+      };
+    });
+    console.log(state.countryData);
+    // End_____Must be simplest way to do this
 
     dispatch({
       type: GET_COUNTRY,
       payload: {
-        textInput: '',
-        autocompleteArr: [],
+        countryName: state.countryName,
+        countryLastDay: state.countryLastDay,
+        countryData: state.countryData,
       },
     });
   };
@@ -107,6 +142,9 @@ const CovState = (props) => {
         loading: state.loading,
         autocompleteArr: state.autocompleteArr,
         textInput: state.textInput,
+        countryName: state.countryName,
+        countryLastDay: state.countryLastDay,
+        countryData: state.countryData,
         getCountries,
         autocomplete,
         getCountry,

@@ -1,11 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AlertContext from '../context/alert/alertContext';
 import CovContext from '../context/cov/covContext';
 
 const Search = () => {
   const alertContext = useContext(AlertContext);
   const covContext = useContext(CovContext);
-  // const [text, setText] = useState('');
   const { getCountry, getCountries, autocompleteArr, textInput } = covContext;
 
   useEffect(() => {
@@ -16,7 +15,6 @@ const Search = () => {
   const onChange = (e) => {
     covContext.autocomplete(e.target.value);
   };
-  // setText(textInput);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +25,6 @@ const Search = () => {
     } else {
       alertContext.removeAlert();
       getCountry(textInput);
-      // setText('');
     }
   };
 

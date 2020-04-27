@@ -12,22 +12,22 @@ const Countries = () => {
   if (loading) {
     return <Spinner />;
   } else {
-    return <h1>.........</h1>;
-
-    // if (countrySelected.length === 0) {
-    //   return countriesStart.map((country) => {
-    //     return (
-    //       <CountryCard
-    //         key={countriesStart.indexOf(country)}
-    //         country={country}
-    //       />
-    //     );
-    //   });
-    // } else
-    // {
-    //   return <CountryCard country={countrySelected} />;
-    // }
+    return <CountryCard />;
   }
+
+  // if (countrySelected.length === 0) {
+  //   return countriesStart.map((country) => {
+  //     return (
+  //       <CountryCard
+  //         key={countriesStart.indexOf(country)}
+  //         country={country}
+  //       />
+  //     );
+  //   });
+  // } else
+  // {
+  //   return <CountryCard country={countrySelected} />;
+  // }
 };
 
 export default Countries;

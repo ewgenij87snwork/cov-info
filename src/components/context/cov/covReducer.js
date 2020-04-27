@@ -23,7 +23,6 @@ export default (state, action) => {
       return {
         ...state,
         autocompleteArr: action.payload.autocompleteArr,
-        textInput: action.payload.textInput,
       };
     case GET_COUNTRY:
       return {
@@ -31,6 +30,9 @@ export default (state, action) => {
         autocompleteArr: [],
         loading: false,
         textInput: '',
+        countryLastDay: action.payload.countryLastDay,
+        countryName: action.payload.countryName,
+        countryData: action.payload.countryData,
       };
 
     default:
