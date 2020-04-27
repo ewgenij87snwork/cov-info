@@ -6,7 +6,7 @@ import CovContext from '../context/cov/covContext';
 const Countries = () => {
   const covContext = useContext(CovContext);
 
-  const { loading, countriesStart, countrySelected, countryName } = covContext;
+  const { loading, countryName } = covContext;
 
   // Spinner while loading countries
   if (loading) {
@@ -15,10 +15,15 @@ const Countries = () => {
     return countryName ? (
       <CountryCard />
     ) : (
-      <h1 style={{ height: '70vh' }}>Please enter country name... </h1>
+      <h3 style={{ height: '70vh', textAlign: 'center' }} className='m-3'>
+        Please enter country name...{' '}
+      </h3>
     );
   }
 
+  // For next step:
+
+  // const { loading, countriesStart, countrySelected, countryName } = covContext;
   // if (countrySelected.length === 0) {
   //   return countriesStart.map((country) => {
   //     return (
