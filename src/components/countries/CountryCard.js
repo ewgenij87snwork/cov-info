@@ -13,11 +13,14 @@ const Card = () => {
   } = covContext;
 
   if (countryLastDay) {
-    const { Confirmed, Deaths } = countryLastDay;
+    const { Confirmed, Deaths, date } = countryLastDay;
+    console.log(countryLastDay);
 
     return (
       <div className='card card-cov my-2'>
-        <h2 className='bg-light text-center'>{countryName}</h2>
+        <h2 className='bg-light text-center'>
+          {countryName} <p className='lead text-primary'>{date}</p>
+        </h2>
         <div className='value-top  m-1'>
           <div className='current-value lead badge badge-primary '>
             Current numbers: <br />

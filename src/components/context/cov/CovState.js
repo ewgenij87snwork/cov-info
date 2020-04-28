@@ -91,7 +91,7 @@ const CovState = (props) => {
 
     // Today data
     const res = await Axios.get(
-      `https://api.covid19api.com/dayone/country/${country}`
+      `https://api.covid19api.com//live/country/${country}/status/confirmed`
     );
     state.countryLastDay = res.data[res.data.length - 1];
 
@@ -129,6 +129,9 @@ const CovState = (props) => {
         diff: differencArr[i],
       };
     });
+
+    state.countryLastDay.date = state.countryData[0].date;
+    console.log(state.countryLastDay.date);
     // End_____Must be simplest way to do this
 
     // Population
