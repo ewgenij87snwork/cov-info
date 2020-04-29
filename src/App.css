@@ -506,6 +506,7 @@ table th {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 1rem;
   text-align: center;
+  line-height: 1.2;
 }
 .proportion .value {
   display: flex;
@@ -520,6 +521,7 @@ table th {
 }
 .value-number {
   font-weight: bold;
+  margin-top: 7px;
 }
 .proportion .value:last-of-type .value-number {
   color: var(--danger-color);
@@ -565,5 +567,14 @@ table th {
   .navbar ul {
     text-align: center;
     justify-content: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .container {
+    padding: 0 5px;
+  }
+  .search-form {
+    margin: 5px;
   }
 }

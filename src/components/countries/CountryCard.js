@@ -14,7 +14,6 @@ const Card = () => {
 
   if (countryLastDay) {
     const { Confirmed, Deaths, date } = countryLastDay;
-    console.log(countryLastDay);
 
     return (
       <div className='card card-cov my-2'>

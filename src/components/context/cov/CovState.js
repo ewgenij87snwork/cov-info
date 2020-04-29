@@ -131,7 +131,6 @@ const CovState = (props) => {
     });
 
     state.countryLastDay.date = state.countryData[0].date;
-    console.log(state.countryLastDay.date);
     // End_____Must be simplest way to do this
 
     // Population
