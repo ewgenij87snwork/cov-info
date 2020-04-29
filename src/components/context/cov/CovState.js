@@ -91,7 +91,7 @@ const CovState = (props) => {
 
     // Today data
     const res = await Axios.get(
-      `https://api.covid19api.com//live/country/${country}/status/confirmed`
+      `https://api.covid19api.com/total/country/${country}`
     );
     state.countryLastDay = res.data[res.data.length - 1];
 

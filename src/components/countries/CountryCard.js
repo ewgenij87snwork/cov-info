@@ -24,7 +24,7 @@ const Card = () => {
         <div className='value-top  m-1'>
           <div className='current-value lead badge badge-primary '>
             Current numbers: <br />
-            <span className='large'>{Confirmed}</span>
+            <span className='large'>{formatNumber(Confirmed)}</span>
           </div>
           <div className='current-value lead badge badge-primary'>
             Deaths: <br /> <span className=' large'>{Deaths}</span>
@@ -43,7 +43,7 @@ const Card = () => {
                   <span className='date text-light'>{item.date}</span>
                   <span className='number'>{formatNumber(item.confirmed)}</span>
                   <span className='diff text-danger'>
-                    {item.diff > 0 ? `+ ${item.diff}` : '-'}
+                    {item.diff > 0 ? `+ ${formatNumber(item.diff)}` : '-'}
                   </span>
                 </li>
               )
