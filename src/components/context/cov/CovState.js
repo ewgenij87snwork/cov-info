@@ -56,6 +56,10 @@ const CovState = (props) => {
         country.substr(0, text.length).toUpperCase() === text.toUpperCase()
     );
 
+    /* 
+Делаем слушателя и Берем мяссим автокомплитЕрр -- в случае нажатие вниз -- выделение первого города, потом след и след... При нажатии энтера -- передавать как-то этот город, а при шевелении мыши -- убирать выделение, чтобы ховер срабатывал
+*/
+
     // From every elements from previous array make DOM-elements
     state.autocompleteArr = state.firstLettersArr.map((country, i) => (
       <div key={i} onClick={autocompleteClick}>
@@ -89,19 +93,15 @@ const CovState = (props) => {
     setLoading();
     state.countryName = country;
 
-    // Today data
     const res = await Axios.get(
       `https://api.covid19api.com/total/country/${country}`
     );
+    // Today data
     state.countryLastDay = res.data[res.data.length - 1];
 
     // Week data
-    const resWeek = await Axios.get(
-      `https://api.covid19api.com/total/country/${country}`
-    );
-
-    state.countryData = resWeek.data
-      .splice(resWeek.data.length - 7, res.data.length)
+    state.countryData = res.data
+      .splice(res.data.length - 7, res.data.length)
       .reverse();
 
     // Begin_____Must be simplest way to do this
@@ -114,11 +114,7 @@ const CovState = (props) => {
     });
 
     const differencArr = countryDistructData.map((item, i, arr) => {
-      if (i > 0) {
-        return arr[i - 1].confirmed - item.confirmed;
-      } else {
-        return '-';
-      }
+      return i > 0 ? arr[i - 1].confirmed - item.confirmed : '-';
     });
 
     differencArr.shift();
@@ -158,15 +154,7 @@ const CovState = (props) => {
   return (
     <CovContext.Provider
       value={{
-        countries: state.countries,
-        loading: state.loading,
-        autocompleteArr: state.autocompleteArr,
-        textInput: state.textInput,
-        countryName: state.countryName,
-        countryPopulationPercentage: state.countryPopulationPercentage,
-        countryPopulation: state.countryPopulation,
-        countryLastDay: state.countryLastDay,
-        countryData: state.countryData,
+        ...state,
         getCountries,
         autocomplete,
         getCountry,

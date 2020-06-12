@@ -25,15 +25,22 @@ export default (state, action) => {
         autocompleteArr: action.payload.autocompleteArr,
       };
     case GET_COUNTRY:
+      const {
+        countryName,
+        countryLastDay,
+        countryData,
+        countryPopulation,
+        countryPopulationPercentage,
+      } = action.payload;
       return {
         ...state,
         autocompleteArr: [],
         textInput: '',
-        countryName: action.payload.countryName,
-        countryLastDay: action.payload.countryLastDay,
-        countryData: action.payload.countryData,
-        countryPopulation: action.payload.countryPopulation,
-        countryPopulationPercentage: action.payload.countryPopulationPercentage,
+        countryName,
+        countryLastDay,
+        countryData,
+        countryPopulation,
+        countryPopulationPercentage,
         loading: false,
       };
 

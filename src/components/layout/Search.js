@@ -18,14 +18,12 @@ const Search = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (textInput === '') {
-      alertContext.setAlert({
-        alert: { msg: 'Please, enter text', type: 'light' },
-      });
-    } else {
-      alertContext.removeAlert();
-      getCountry(textInput);
-    }
+
+    return textInput === ''
+      ? alertContext.setAlert({
+          alert: { msg: 'Please, enter text', type: 'light' },
+        })
+      : (alertContext.removeAlert(), getCountry(textInput));
   };
 
   return (

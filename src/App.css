@@ -527,6 +527,11 @@ table th {
   color: var(--danger-color);
 }
 
+/* Counties style */
+.conutries-title {
+  height: 70vh;
+  text-align: center;
+}
 /* Mobile Styles */
 @media (max-width: 700px) {
   .hide-sm {

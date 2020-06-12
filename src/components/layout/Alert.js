@@ -6,7 +6,7 @@ const Alert = () => {
   const { alert } = alertContext;
 
   return (
-    alert !== null && (
+    alert && (
       <div className={`alert alert-${alert.type}`}>
         <i className='fa fa-exclamation-circle'></i> {alert.msg}
       </div>
