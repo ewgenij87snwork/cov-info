@@ -14,9 +14,8 @@ Project maked in ReactJS for provide some practical knowledge.
 Here used:
 
 - ReactJS
-- Rest API (get data)
+- REST API (get data)
 - Axios
 - Router
 - useContext
 - useReducer
-- 
