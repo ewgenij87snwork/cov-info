@@ -1,6 +1,4 @@
-# cov-info 
-
-**COVID Tracker**
+# COVID Tracker by Country
 
 https://co-info.netlify.app/
 
