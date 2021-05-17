@@ -1,4 +1,6 @@
-# cov-info
+# cov-info 
+
+**COVID Tracker**
 
 https://co-info.netlify.app/
 
